@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- ninja_list.html -->
+<h1>All Ninjas</h1>
+<a href="{% url 'ninja_create' %}">Add Ninja</a>
+<ul>
+  {% for ninja in ninjas %}
+    <li>
+      <a href="{% url 'ninja_detail' ninja.pk %}">{{ ninja.name }}</a>
+      ({{ ninja.rank }}) - {{ ninja.clan }}
+    </li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>
