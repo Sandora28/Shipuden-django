@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>{% if form.instance.pk %}Edit Mission{% else %}Create Mission{% endif %}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>
+    <label for="id_assigned_to">Assign to Ninja:</label>
+    {{ form.assigned_to }}
+</p>
+    <button type="submit">Save</button>
+</form>
+<a href="{% url 'mission_list' %}">Back to list</a>
+</body>
+</html>

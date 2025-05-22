@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Mission List</h1>
+<a href="{% url 'mission_create' %}">Create New Mission</a>
+<ul>
+  {% for mission in missions %}
+    <li>
+      <a href="{% url 'mission_detail' mission.pk %}">{{ mission.title }}</a>
+    </li>
+  {% empty %}
+    <li>No missions yet.</li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>

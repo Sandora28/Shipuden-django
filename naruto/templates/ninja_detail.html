@@ -9,8 +9,34 @@
 <h1>{{ ninja.name }}</h1>
 <p><strong>Rank:</strong> {{ ninja.rank }}</p>
 <p><strong>Clan:</strong> {{ ninja.clan }}</p>
-<p><strong>Team:</strong> {{ ninja.team }}</p>
+<p><strong>Team: </strong></p>
+<ul>
+  {% for team in ninja.team_leader.all %}
+    <li>{{ team.name }} — <strong>Leader</strong></li>
+  {% endfor %}
 
+  {% for team in ninja.teams.all %}
+    {% if team.leader != ninja %}
+      <li>{{ team.name }} — Member (Leader: {{ team.leader.name }})</li>
+    {% endif %}
+  {% endfor %}
+</ul>
+<h3>Missions</h3>
+<ul>
+  {% for mission in ninja.missions.all %}
+    <li><a href="{% url 'mission_detail' mission.pk %}">{{ mission.title }}</a></li>
+  {% empty %}
+    <li>No missions assigned.</li>
+  {% endfor %}
+</ul>
+<h3>Jutsus</h3>
+<ul>
+  {% for jutsu in ninja.jutsu.all %}
+    <li>{{ jutsu.name }}</li>
+  {% empty %}
+    <li>No jutsu assigned.</li>
+  {% endfor %}
+</ul>
 <a href="{% url 'ninja_update' ninja.pk %}">Edit</a> |
 <a href="{% url 'ninja_delete' ninja.pk %}">Delete</a> |
 <a href="{% url 'ninja_list' %}">Back to list</a>

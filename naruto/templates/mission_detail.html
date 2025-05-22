@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ mission.title }}</h1>
+<p><strong>Description:</strong> {{ mission.description }}</p>
+<p><strong>Rank:</strong> {{ mission.rank }}</p>
+<p><strong>Assigned Ninjas:</strong></p>
+<ul>
+  {% for ninja in mission.assigned_to.all %}
+    <li>{{ ninja.name }}</li>
+  {% empty %}
+    <li>No ninjas assigned</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'mission_update' mission.pk %}">Edit</a> |
+<a href="{% url 'mission_delete' mission.pk %}">Delete</a> |
+<a href="{% url 'mission_list' %}">Back to Missions</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Delete Mission: {{ mission.title }}?</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+</form>
+<a href="{% url 'mission_detail' mission.pk %}">Cancel</a>
+
+</body>
+</html>
